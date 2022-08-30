@@ -1,5 +1,5 @@
 import java.util.*;
-class Armstrong_Number {
+class 1_Armstrong_Number {
     public static void main(String[] args) {
    int x,temp;
    Scanner sc = new Scanner(System.in);
