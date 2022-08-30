@@ -1,0 +1,29 @@
+
+import java.util.*;
+class 14_Sum_Odd_Even {
+    public static void main(String[] args) {
+        System.out.println("Enter array elements");
+        Scanner sc = new Scanner(System.in);
+        
+        int[] n = new int[10];
+        int evensum = 0 , oddsum = 0;
+        for(int i=0;i<n.length;i++)
+        {
+        n[i] = sc.nextInt();
+        }
+        
+        for(int j = 0;j<n.length;j++)
+        {
+            if(j%2 == 0)
+            {
+               oddsum  = oddsum +n[j];  
+            }
+            else
+            {
+             evensum = evensum + n[j];  
+            }
+        }
+        System.out.println("Sum of elements at even position " + evensum);
+        System.out.println("Sum of elements at odd position " + oddsum);
+    }
+}
