@@ -1,5 +1,5 @@
 import java.util.*;
-class Happy_Number {
+class 2_Happy_Number {
     public static void main(String[] args) {
    int x,temp;
    Scanner sc = new Scanner(System.in);
