@@ -1,0 +1,22 @@
+
+import java.util.*;
+class 7_Pronic_Number {
+    public static void main(String[] args) {
+        int num;
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter a number");
+        num = sc.nextInt();
+        Boolean flag = false;
+        
+        for(int i = 0; i<= num; i++)
+        {
+            if( (i * (i+1)) == num)
+                flag = true;
+        }
+        if(flag == true)
+                System.out.println("It is a pronic number");
+            else
+                System.out.println("It is not a pronic number");
+        
+    }
+}
