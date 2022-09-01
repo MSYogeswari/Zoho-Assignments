@@ -1,5 +1,5 @@
 import java.util.*;
-class nverse_array {
+class 10_inverse_array {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int[] num = new int[6];
