@@ -1,0 +1,41 @@
+import java.util.*;
+import java.text.*;
+class 19_Mergearray {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+       int[] arr1 = new int[6];
+       int[] arr2 = new int[4];
+       
+       int[] merarr = new int[arr1.length+arr2.length];
+       
+       System.out.println("Enter array 1 elements");
+       for(int i = 0;i< arr1.length;i++)
+       {
+           arr1[i] = sc.nextInt();
+       }
+       System.out.println("Enter array 2 elements");
+       for(int i = 0;i< arr2.length;i++)
+       {
+           arr2[i] = sc.nextInt();
+       }
+       
+       int i =0;
+       for(i = 0;i<arr1.length;i++)
+       {
+           merarr[i] = arr1[i];
+       }
+       for(int j=0;j<arr2.length;j++)
+       {
+           merarr[i++] = arr2[j];
+       }
+       
+       System.out.println("merged array elements");
+       for(int k = 0;k< merarr.length;k++)
+       {
+           System.out.print(merarr[k] + " ");
+       }
+       
+       
+
+    }
+}
