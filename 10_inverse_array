@@ -1,5 +1,3 @@
-// Online Java Compiler
-// Use this editor to write, compile and run your Java code online
 import java.util.*;
 class nverse_array {
     public static void main(String[] args) {
@@ -10,18 +8,16 @@ class nverse_array {
         {
             num[x] = sc.nextInt();
         }
-        
         int[] inverse = new int[6];
-        
         for(int i = 0;i<6;i++)
         {
-            for(int j= 0;j<6;j++)
-            {
-                if(num[j] == i)
-                {
-                    inverse[i] = num[j];
-                }
-            }
+           for(int j = 0;j<6;j++)
+           {
+               if(num[j] == i)
+               {
+                   inverse[i] =j;
+               }
+           }
         }
         System.out.print("inverse array");
         
