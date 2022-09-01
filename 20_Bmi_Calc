@@ -1,0 +1,18 @@
+import java.util.*;
+import java.text.*;
+class 20_Bmi_Calc {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+       double bmi,weight,height;
+       DecimalFormat df = new DecimalFormat("0.00");
+       System.out.println("Enter weight in kg");
+       weight = sc.nextDouble();
+       System.out.println("Enter height in meters");
+       height = sc.nextDouble();
+       
+       bmi = weight / (height *height);
+       
+       System.out.println("BMI is: " + df.format(bmi) + "Kg/m2");
+
+    }
+}
