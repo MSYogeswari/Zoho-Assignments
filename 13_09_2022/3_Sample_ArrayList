@@ -1,0 +1,19 @@
+import java.util.ArrayList;
+
+public class Sample_ArrayList {
+    public static void main(String args[])
+    {
+        ArrayList<Character> al = new ArrayList<Character>();
+        al.add('a');
+        al.add('b');
+        al.add(2,'c');
+        al.add(3,'d');
+System.out.println(al);
+        System.out.println("Get method returns index" + al.get(2));
+
+       System.out.println("Indexof method returns element" + al.indexOf('d'));
+       System.out.println(al.isEmpty());
+       al.remove(1);
+
+    }
+}
