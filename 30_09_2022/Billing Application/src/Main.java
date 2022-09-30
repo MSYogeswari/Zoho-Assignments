@@ -9,6 +9,7 @@ public class Main {
         {
             Stock st = new Stock();
             Bill bill = new Bill();
+            Validation valobject = new Validation();
             Scanner sc = new Scanner(System.in);
         int userOption, userStockOption, userBillOption;
         System.out.println("Welcome!");
@@ -73,7 +74,6 @@ public class Main {
                                     float priceToBeUpdated = sc.nextFloat();
                                     st.updateStockQuantityPrice(stockNameToUpdateQuantityPrice,quantityToBeUpdated, priceToBeUpdated);
                                     st.displayStock();
-
                                 }
                                 break;
                             case 4:
@@ -100,6 +100,11 @@ public class Main {
                             case 1:
                                 System.out.println("Enter Customer Mobile Number: ");
                                 String customerNumber = sc.next();
+                                while(!valobject.validateMobileNumber(customerNumber))
+                                {
+                                    System.out.println("Mobile Number is invalid! Please enter valid mobile number");
+                                    customerNumber = sc.next();
+                                }
                                 System.out.println("Enter number of items to be entered for this bill");
                                 int noOfItems = sc.nextInt();
                                 bill.addBill(st,customerNumber, noOfItems);

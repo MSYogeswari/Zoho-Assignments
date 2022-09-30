@@ -7,7 +7,7 @@ class Stock {
     Stock()
     {
 //Adding some stock by default
-        StockArraylist.add(new StockInformation("R01","Rice",12.25f,100));
+        StockArraylist.add(new StockInformation("R01","Moong Dhall",12.25f,100));
         StockArraylist.add(new StockInformation("R02","Rava",50f,100));
         StockArraylist.add(new StockInformation("R03","Wheat",65f,100));
         StockArraylist.add(new StockInformation("R04","Ghee",195.50f,50));
@@ -52,17 +52,17 @@ class Stock {
     }
 
     void displayStock() {
-        System.out.printf("%-20s%-20s%-20s","Item Code","Item Description","Item Quantity","Item Price");
+        System.out.printf("%-20s%-25s%-25s%-25s\n","Item Code","Item Description","Item Quantity","Item Price");
         for(int i=0;i<StockArraylist.size();i++)
         {
-            System.out.println(StockArraylist.get(i).getItem_Name()+"\t\t\t\t\t" + StockArraylist.get(i).getItem_Description()+"\t\t\t\t\t\t"+StockArraylist.get(i).getItem_Quantity()+"\t\t\t\t\t"+StockArraylist.get(i).getItem_Price());
+            System.out.printf("%-20s%-25s%-25s%-25s\n",StockArraylist.get(i).getItem_Name(), StockArraylist.get(i).getItem_Description(),StockArraylist.get(i).getItem_Quantity(),StockArraylist.get(i).getItem_Price());
         }
     }
     void displayEmptyStock() {
-        System.out.println("Item Code"+"\t\t\t" + "Item Description"+"\t\t\t" + "Item Quantity"+"\t\t\t" + "Item Price");
+        System.out.printf("%-20s%-25s%-25s%-25s\n","Item Code","Item Description","Item Quantity","Item Price");
         for(int i=0;i<StockArraylist.size();i++) {
             if (StockArraylist.get(i).getItem_Quantity() == 0) {
-                System.out.println(StockArraylist.get(i).getItem_Name() + "\t\t\t\t\t" + StockArraylist.get(i).getItem_Description() + "\t\t\t\t\t\t" + StockArraylist.get(i).getItem_Quantity() + "\t\t\t\t\t" + StockArraylist.get(i).getItem_Price());
+                System.out.printf("%-20s%-25s%-25s%-25s\n",StockArraylist.get(i).getItem_Name(), StockArraylist.get(i).getItem_Description(),StockArraylist.get(i).getItem_Quantity(),StockArraylist.get(i).getItem_Price());
             }
         }
     }
@@ -73,8 +73,8 @@ class Stock {
     {
         if(StockArraylist.get(j).getItem_Description().compareTo(stockNameToSearch)==0)
         {
-            System.out.println("Item Code"+"\t\t" + "Item Description"+"\t\t\t" + "Item Quantity"+"\t\t\t" + "Item Price");
-            System.out.println(StockArraylist.get(j).getItem_Name()+"\t\t\t\t" + StockArraylist.get(j).getItem_Description()+"\t\t\t\t\t\t"+StockArraylist.get(j).getItem_Quantity()+"\t\t\t\t\t\t"+StockArraylist.get(j).getItem_Price());
+            System.out.printf("%-20s%-25s%-25s%-25s\n","Item Code","Item Description","Item Quantity","Item Price");
+            System.out.printf("%-20s%-25s%-25s%-25s\n",StockArraylist.get(j).getItem_Name(),StockArraylist.get(j).getItem_Description(),StockArraylist.get(j).getItem_Quantity(),StockArraylist.get(j).getItem_Price());
             result = true;
         }
     }
