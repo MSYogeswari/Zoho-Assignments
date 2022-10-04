@@ -55,11 +55,20 @@ public class Main {
                     break;
                 case 5: studentobject.takeAttendance();
                     break;
-                case 6: System.out.println("Enter date in format(dd/MM/yyyy): ");
-                            String dateToPrint = sc.next();
-                            studentobject.printDailyReport(dateToPrint);
-                            studentobject.printDailyAttendanceReport(dateToPrint);
-                            break;
+                case 6: printReportMenu();
+                            int  userReportMenuOption  = sc.nextInt();
+                            switch (userReportMenuOption)
+                            {
+                                case 1: System.out.println("Enter date in format(dd/MM/yyyy): ");
+                                        String dateToPrint = sc.next();
+                                        studentobject.printDailyReport(dateToPrint);
+                                        studentobject.printDailyAttendanceReport(dateToPrint);
+                                        break;
+                                case 2: studentobject.printMonthlyReport();
+                                        break;
+                                case 3: break;
+                                default: System.out.println("Please enter a valid value!");
+                            }
                 case 7: break;
                 default: System.out.println("Enter a valid value");
             }
@@ -92,5 +101,11 @@ public class Main {
         System.out.println("5. Update Student Status");
         System.out.println("6. Exit");
         System.out.println("Please select any option!");
+    }
+    void printReportMenu()
+    {
+        System.out.println("1. Daily Report");
+        System.out.println("2. Monthly Report");
+        System.out.println("3. Exit");
     }
 }

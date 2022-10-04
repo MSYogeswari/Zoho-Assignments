@@ -1,5 +1,8 @@
 import javax.xml.transform.Result;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class StudentController {
@@ -123,12 +126,16 @@ void addStudent() throws SQLException {
         String attdate = sc.next();
         stmt = con.prepareStatement("select RollNumber,concat(FirstName,\" \",LastName) as Name from StudentInformation where StudentStatus = \"Active\"");
         ResultSet rs = stmt.executeQuery();
+        System.out.println("Present(1) or Absent(0): Press 1 or 0");
         while(rs.next())
         {
             System.out.println("Roll Number - Name : "  + rs.getString(1) + " - " + rs.getString(2));
-            System.out.println("Present(1) or Absent(0): Press 1 or 0");
             int temppresent = sc.nextInt();
-            //boolean presentorabsent = (temppresent == 1) ? true : false;
+            while(!isValid(temppresent))
+            {
+                System.out.println("Invalid! Please enter 1 or 0:");
+                temppresent = sc.nextInt();
+            }
             stmtnew = con.prepareStatement("insert into StudentAttendance values('"+ attdate +"',"+ rs.getString(1) +","+ temppresent+")");
             stmtnew.executeUpdate();
         }
@@ -163,5 +170,31 @@ void addStudent() throws SQLException {
         {
             System.out.printf("%-20s%-20s%-20s\n",rs.getString(1),rs.getString(2),rs.getString(3).equals("1") ? "/" : "X");
         }
+    }
+    void printMonthlyReport() throws SQLException {
+        LinkedHashMap<String,String> lowattendance = new LinkedHashMap<>();
+        stmt = con.prepareStatement("select sa.RollNumber,concat(si.FirstName,\" \",si.LastName) as StuName,sum(1) as TotalDays,sum(PresentOrAbsent) as NumberOfDaysPresent,ceil((sum(PresentOrAbsent)/sum(1))*100) as '%' from studentattendance sa left outer join StudentInformation si on sa.RollNumber = si.RollNumber and si.StudentStatus = 'Active' group by RollNumber");
+        ResultSet rs = stmt.executeQuery();
+        System.out.printf("%-20s%-20s%-20s%-20s%-20s\n","RollNumber","Student Name","TotalDays","NumberOfDaysPresent","Percentage of Presence");
+        while (rs.next()) {
+            if(rs.getString(5).compareTo("50") >= 0)
+                        lowattendance.put(rs.getString(1), rs.getString(2));
+                System.out.printf("%-20s%-20s%-20s%-20s%-20s\n", rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)+"%");
+        }
+        System.out.println("Students having low attendance (less than or equal to 50%)");
+        System.out.printf("%-20s%-20s\n","RollNumber","Student Name");
+        for(Map.Entry<String,String> map : lowattendance.entrySet())
+        {
+            System.out.printf("%-20s%-20s\n",map.getKey(),map.getValue());
+        }
+    }
+    boolean isValid(int input)
+    {
+    boolean result = false;
+    if(input == 0 || input == 1)
+    {
+        result = true;
+    }
+    return result;
     }
 }
