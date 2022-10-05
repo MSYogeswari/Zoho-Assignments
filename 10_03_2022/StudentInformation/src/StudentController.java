@@ -177,7 +177,7 @@ void addStudent() throws SQLException {
         ResultSet rs = stmt.executeQuery();
         System.out.printf("%-20s%-20s%-20s%-20s%-20s\n","RollNumber","Student Name","TotalDays","NumberOfDaysPresent","Percentage of Presence");
         while (rs.next()) {
-            if(rs.getString(5).compareTo("50") >= 0)
+            if(rs.getString(5).compareTo("50") <= 0)
                         lowattendance.put(rs.getString(1), rs.getString(2));
                 System.out.printf("%-20s%-20s%-20s%-20s%-20s\n", rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)+"%");
         }
@@ -196,5 +196,12 @@ void addStudent() throws SQLException {
         result = true;
     }
     return result;
+    }
+    boolean validateUser(String username,String password)
+    {
+        if(username.compareTo("teacher") == 0 && password.compareTo("teacher") == 0)
+            return true;
+        else
+            return false;
     }
 }

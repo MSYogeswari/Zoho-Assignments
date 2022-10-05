@@ -12,6 +12,19 @@ public class Main {
         int user_menu_input;
         System.out.println("Welcome!!!");
         System.out.println("*********Student Attendance Management*********");
+        System.out.println("Please enter your username: ");
+        String username = sc.next();
+        System.out.println("Please enter password: ");
+        String password = sc.next();
+        while(!studentobject.validateUser(username,password))
+        {
+            System.out.println("User name and password invalid! Please enter valid username and password to continue;");
+            System.out.println("Please enter your username: ");
+            username = sc.next();
+            System.out.println("Please enter password: ");
+            password = sc.next();
+        }
+
         do {
             mainMenu();
             user_menu_input = sc.nextInt();
