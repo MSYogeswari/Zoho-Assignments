@@ -401,5 +401,11 @@ class TicketController {
         }
         System.out.println("Your amount will be refunded! Thank you!!!");
     }
-
+boolean validateUser(String username,String password)
+{
+    if(username.compareTo("user1") == 0 && password.compareTo("user") == 0)
+        return true;
+    else
+        return false;
+}
 }

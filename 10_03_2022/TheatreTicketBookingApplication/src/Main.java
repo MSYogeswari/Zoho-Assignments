@@ -10,6 +10,19 @@ class Main {
         int userMenuInput,showMenuinput;
         Scanner sc = new Scanner(System.in);
         TicketController tickConObject = new TicketController();
+        System.out.println("WELCOME!");
+        System.out.println("Please enter your username: ");
+        String username = sc.next();
+        System.out.println("Please enter password: ");
+        String password = sc.next();
+        while(!tickConObject.validateUser(username,password))
+        {
+            System.out.println("User name and password invalid! Please enter valid username and password to continue;");
+            System.out.println("Please enter your username: ");
+            username = sc.next();
+            System.out.println("Please enter password: ");
+            password = sc.next();
+        }
         System.out.println("************Theatre Ticket Booking************");
         System.out.println("Ponniyin Selvan-Part 1");
         System.out.println("**********************************************");
