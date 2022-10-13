@@ -1,0 +1,100 @@
+class Person {
+    private int personNo;
+    private int weight;
+    private boolean status;
+
+    public void setpersonNo(int personnumber)
+    {
+        this.personNo = personnumber;
+    }
+    public  int getpersonNo()
+    {
+        return this.personNo;
+    }
+    public void setWeight(int weight)
+    {
+        this.weight = weight;
+    }
+    public  int getWeight()
+    {
+        return this.weight;
+    }
+    public boolean getstatus()
+    {
+        return  this.status;
+    }
+    public void setstatus(boolean status)
+    {
+        this.status = status;
+    }
+
+}
+
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Main {
+    ArrayList<Person> personWeightList = new ArrayList<>();
+    public static void main(String[] args) {
+    Main obj = new Main();
+    obj.initiate();
+    }
+
+
+    public void initiate() {
+        Scanner sc = new Scanner(System.in);
+        int no = 1;
+        System.out.println("Enter no of persons:");
+        int noOfPerson = sc.nextInt();
+
+        for (int i = 0; i < noOfPerson; i++) {
+            Person personobject = new Person();
+            System.out.println("Enter number " + no + "weight");
+            personobject.setpersonNo(no++);
+            int tempweight = sc.nextInt();
+            personobject.setWeight(tempweight);
+            personobject.setstatus(false);
+            personWeightList.add(personobject);
+        }
+        display();
+        System.out.println("Enter boat limit");
+        int limit = sc.nextInt();
+        int noOfBoats = findNoofBoats(limit);
+        System.out.println("Minimum number of boats required: " + noOfBoats);
+    }
+
+    public void display()
+    {
+        System.out.println("Person Number  -  Weight");
+        for(int i = 0; i<personWeightList.size();i++ )
+        {
+            System.out.println( personWeightList.get(i).getpersonNo() + "-" + personWeightList.get(i).getWeight());
+        }
+    }
+    public int findNoofBoats(int limit)
+    {
+        int noboats = 0;
+        for(int i=0;(i<personWeightList.size()) && (personWeightList.get(i).getstatus() == false)  ;i++)
+        {
+            System.out.println(i +"-" + personWeightList.get(i).getstatus());
+            noboats++;
+            int index = i+1;
+            int sum = personWeightList.get(i).getWeight();
+            while(index < personWeightList.size())
+            {
+                if(sum + personWeightList.get(index).getWeight() <= limit)
+                {
+                    sum = sum + personWeightList.get(index).getWeight();
+                    personWeightList.get(index).setstatus(true);
+                    index++;
+                }
+                else
+                {
+                    index++;
+                }
+            }
+        }
+     return noboats;
+    }
+}
