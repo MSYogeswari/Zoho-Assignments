@@ -72,29 +72,26 @@ public class Main {
             System.out.println( personWeightList.get(i).getpersonNo() + "-" + personWeightList.get(i).getWeight());
         }
     }
-    public int findNoofBoats(int limit)
+     public int findNoofBoats(int limit)
     {
         int noboats = 0;
-        for(int i=0;(i<personWeightList.size()) && (personWeightList.get(i).getstatus() == false)  ;i++)
+        for(int i=0;i<personWeightList.size() ;i++)
         {
-            System.out.println(i +"-" + personWeightList.get(i).getstatus());
-            noboats++;
-            int index = i+1;
-            int sum = personWeightList.get(i).getWeight();
-            while(index < personWeightList.size())
-            {
-                if(sum + personWeightList.get(index).getWeight() <= limit)
-                {
-                    sum = sum + personWeightList.get(index).getWeight();
-                    personWeightList.get(index).setstatus(true);
-                    index++;
-                }
-                else
-                {
+            if(personWeightList.get(i).getstatus() == false) {
+                noboats++;
+                int index = i + 1;
+                int sum = personWeightList.get(i).getWeight();
+                while (index < personWeightList.size()) {
+
+                    if ((personWeightList.get(index).getstatus() == false) && (sum + personWeightList.get(index).getWeight() <= limit)) {
+                        System.out.println(i + "-" + index);
+                        sum = sum + personWeightList.get(index).getWeight();
+                        personWeightList.get(index).setstatus(true);
+                    }
                     index++;
                 }
             }
         }
-     return noboats;
+        return noboats;
     }
 }
