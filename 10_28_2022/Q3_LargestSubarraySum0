@@ -1,0 +1,37 @@
+public class Q3_LargestSubarraySum0 {
+    public static void main(String[] args) {
+        int[] arr = new int[]{15,-2,2,-8,1,7,10,23};
+        //int[] arr = new int[]{0};
+        int len = arr.length;
+        int sum = 0 , maxlen = 0;
+        int start = 0,end = 0;
+
+        if(len == 1 && arr[0] == 0)
+            maxlen = 1;
+
+        for(int i=0;i<len;i++)
+        {
+            sum = arr[i];
+            for(int j=i+1;j<len;j++)
+            {
+                sum = sum + arr[j];
+                if(sum == 0)
+                {
+                    if((j-i+1) > maxlen)
+                    {
+                        maxlen = j-i+1;
+                        start = i;
+                        end = j;
+                    }
+                }
+            }
+        }
+System.out.println("Maximum Length of zero sum subarray is :" + maxlen);
+        for(int i=start;i<=end;i++)
+        {
+            System.out.print(arr[i] + " ");
+        }
+
+
+    }
+}
