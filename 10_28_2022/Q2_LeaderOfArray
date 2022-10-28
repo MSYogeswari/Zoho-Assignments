@@ -1,0 +1,23 @@
+public class Q2_LeaderOfArray {
+    public static void main(String[] args) {
+        int[] arr = new int[]{16,17,4,3,5,2};
+        int len = arr.length;
+        for(int i=1;i<len;i++)
+        {
+            int currentelement = arr[i];
+            int j = i+1;
+            boolean flag = true;
+            while(j <len)
+            {
+                if(currentelement < arr[j])
+                {
+                    flag = false;
+                }
+                j++;
+            }
+            if(flag == true)
+                    System.out.println(arr[i]);
+        }
+
+    }
+}
