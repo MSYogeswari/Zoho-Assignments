@@ -1,0 +1,46 @@
+import java.util.HashMap;
+import java.util.Map;
+
+public class Q4_CheckArraysEqual {
+    public static void main(String[] args) {
+        int[] arr1 = new int[]{1,2,3,3,4,0,1,1};
+        int[] arr2 = new int[]{1,3,2,4,1,3,0,1};
+        int len1 = arr1.length;
+        int len2 = arr2.length;
+        boolean equalFlag = true;
+        HashMap<Integer,Integer> resultMap = new HashMap<Integer,Integer>();
+
+if(len1 != len2)
+    equalFlag = false;
+else
+{
+    for(int i=0;i<len1;i++)
+    {
+        int count = 0;
+        if(resultMap.containsKey(arr1[i]))
+            count = resultMap.get(arr1[i]);
+        resultMap.put(arr1[i],++count);
+    }
+    for(int j=0;j<len2;j++)
+    {
+        if(!resultMap.containsKey(arr2[j]))
+            equalFlag = false;
+        else
+        {
+            int tempcount = resultMap.get(arr2[j]);
+            resultMap.put(arr2[j] ,--tempcount);
+        }
+    }
+     for (Map.Entry<Integer, Integer> maps : resultMap.entrySet()) {
+                if(maps.getValue() != 0)
+                {
+                    equalFlag = false;
+                }
+        }
+}
+if(equalFlag)
+    System.out.println("Both arrays are equal");
+else
+    System.out.println("Both arrays are not equal");
+    }
+}
