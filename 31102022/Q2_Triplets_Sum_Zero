@@ -1,0 +1,31 @@
+import java.util.ArrayList;
+import java.util.Collections;
+
+public class Q2_Triplets_Sum_Zero {
+    public static void main(String[] args) {
+        int[] nums = new int[]{-1,0,1,2,-1,-4};
+        int len = nums.length;
+        int sum = 0;
+        ArrayList<ArrayList<Integer>> outlist = new ArrayList<ArrayList<Integer>>();
+        for(int i = 0;i<len;i++)
+        {
+            for(int j = i+1;j< len ; j ++)
+            {
+                for(int k = j+1;k <len;k++)
+                {
+                    if(nums[i] + nums[j] + nums[k] == 0)
+                    {
+                        ArrayList<Integer> templist = new ArrayList<>();
+                        templist.add(nums[i]);
+                        templist.add(nums[j]);
+                        templist.add(nums[k]);
+                        Collections.sort(templist);
+                        if(!outlist.contains(templist))
+                        outlist.add(templist);
+                    }
+                }
+            }
+        }
+        System.out.println(outlist);
+    }
+}
