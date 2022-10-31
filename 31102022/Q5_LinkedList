@@ -1,0 +1,73 @@
+public class Q5_LinkedList {
+    Node head;
+    class Node {
+        int data;
+        Node next;
+
+        Node(int data) {
+            this.data = data;
+            this.next = null;
+
+        }
+    }
+        public void insertNode(int element)
+        {
+            Node newnode = new Node(element);
+
+            if(head == null)
+                head = newnode;
+            else
+            {
+                newnode.next = head;
+                head = newnode;
+            }
+        }
+        public void printLinkedList()
+        {
+            Node temp = head;
+            int tempdata;
+            while(temp != null)
+            {
+                System.out.print(temp.data + (temp.next == null ? "" : " -> "));
+                temp = temp.next;
+            }
+        }
+
+        public void printMaximumElementForAllNode()
+        {
+            System.out.println("\nMax elements");
+            Node temp = head;
+            while(temp != null)
+            {
+                int nextMax = 0;
+                int x = temp.data;
+                Node temp2 = temp.next;
+                while(temp2 != null )
+                {
+                    int y = temp2.data;
+                    if( y > x)
+                    {
+                        nextMax = y;
+                        break;
+                    }
+                    temp2 = temp2.next;
+                }
+        System.out.print(nextMax + " ");
+                temp = temp.next;
+            }
+        }
+        public static void main(String[] args) {
+        System.out.println("Creating list....");
+        Q4_LinkedList listobject = new Q4_LinkedList();
+
+        listobject.insertNode(5);
+        listobject.insertNode(3);
+        listobject.insertNode(4);
+        listobject.insertNode(7);
+        listobject.insertNode(2);
+
+
+        listobject.printLinkedList();
+        listobject.printMaximumElementForAllNode();
+    }
+}
