@@ -1,0 +1,29 @@
+import java.util.Arrays;
+
+public class Q1_ProductOfArray {
+    public static void main(String[] args) {
+        int[] input = new int[]{1,3,5,2};
+        int len = input.length;
+        int[] output = new int[len];
+        int product = 1;
+
+        if(len == 1)
+        {
+            output[0] = input[0];
+        }
+        else {
+            for (int i = 0; i < len; i++) {
+                int leftproduct = 1, rightproduct = 1;
+                for (int j = 0; j < i; j++) {
+                    leftproduct = leftproduct * input[j];
+                }
+                for (int k = i + 1; k < len; k++) {
+                    rightproduct = rightproduct * input[k];
+                }
+                product = leftproduct * rightproduct;
+                output[i] = product;
+            }
+        }
+System.out.println(Arrays.toString(output));
+    }
+}
