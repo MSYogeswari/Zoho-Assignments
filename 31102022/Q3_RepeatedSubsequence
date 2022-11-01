@@ -1,7 +1,4 @@
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
 
 public class Rough {
 
@@ -9,22 +6,21 @@ public class Rough {
     public static void main(String[] args) {
             String str = "XYBYAXBY";
         ArrayList<String> output = new ArrayList<>();
-        HashMap<String,Integer> map = new HashMap<>();
+
 
         output = findSubsequence("",str);
         int count = 0;
-        for(String setelement : output)
+
+        for(String temp : output)
         {
-            for(String tempelement : output)
+            if(temp.length() >3)
             {
-                if(tempelement.compareTo(setelement + setelement) == 0 && (tempelement.compareTo(setelement) != 0) && setelement.length() >= 2 )
-                {
+                if(isRepeated(temp) == true)
                     count++;
-                    map.put(setelement,map.getOrDefault(setelement,0)+1);
-                }
             }
         }
-        System.out.println("Total count:" + map.size());
+
+        System.out.println("Total count:" + count);
 
     }
     public static ArrayList<String> findSubsequence(String process, String unprocess)
@@ -41,5 +37,21 @@ public class Rough {
 
         left.addAll(right);
         return left;
+    }
+    public static boolean isRepeated(String subseqstr)
+    {
+        boolean flag = false;
+        int len = subseqstr.length();
+        if(subseqstr.length() %2 == 0)
+        {
+            flag =  subseqstr.substring(0,len/2).equals(subseqstr.substring(len/2,len));
+        }
+        else
+        {
+            flag = subseqstr.substring(0,(len/2)+1).equals(subseqstr.substring(len/2,len));
+        }
+        return flag;
+
+
     }
 }
