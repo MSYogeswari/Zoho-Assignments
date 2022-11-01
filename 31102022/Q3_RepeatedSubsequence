@@ -1,48 +1,45 @@
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
-public class Q3_RepeatedSubsequence {
-    static HashSet<String> set = new HashSet<>();
+public class Rough {
+
+    static int count = 0;
     public static void main(String[] args) {
-        String str = "XYBYAXBY";
-        String output = "";
+            String str = "XYBYAXBY";
+        ArrayList<String> output = new ArrayList<>();
+        HashMap<String,Integer> map = new HashMap<>();
+
+        output = findSubsequence("",str);
         int count = 0;
-
-        Q3_RepeatedSubsequence object = new Q3_RepeatedSubsequence();
-        object.generateSubsequence(str, output);
-
-        for(String setelement : set)
+        for(String setelement : output)
         {
-            for(String tempelement : set)
+            for(String tempelement : output)
             {
-                       if(tempelement.compareTo(setelement + setelement) == 0)
-                       {
-                           count++;
-                           System.out.println(setelement + "-" + tempelement);
-                       }
+                if(tempelement.compareTo(setelement + setelement) == 0 && (tempelement.compareTo(setelement) != 0) && setelement.length() >= 2 )
+                {
+                    count++;
+                    map.put(setelement,map.getOrDefault(setelement,0)+1);
+                }
             }
         }
-        System.out.println("Total count:" + count);
+        System.out.println("Total count:" + map.size());
+
     }
-
-    public void generateSubsequence(String str, String answer) {
-        if (str.length() == 0) {
-           // System.out.println(answer + " ");
-                for(int j=0;j<answer.length();j++)
-                {
-                    for(int k = 2;k<answer.length()-j+1;k++)
-                    {
-                        set.add(answer.substring(j,j+k));
-                    }
-                }
-            return;
+    public static ArrayList<String> findSubsequence(String process, String unprocess)
+    {
+        if(unprocess.isEmpty())
+        {
+            ArrayList<String> temp = new ArrayList<>();
+            temp.add(process);
+            return temp;
         }
+        char ch  = unprocess.charAt(0);
+        ArrayList<String> left = findSubsequence(process+ch,unprocess.substring(1));
+        ArrayList<String> right = findSubsequence(process,unprocess.substring(1));
 
-        for (int i = 0; i < str.length(); i++) {
-                char c = str.charAt(i);
-                String left = str.substring(0, i);
-                String right = str.substring(i + 1);
-                String restofstring = left + right;
-                generateSubsequence(restofstring, answer + c);
-        }
+        left.addAll(right);
+        return left;
     }
 }
