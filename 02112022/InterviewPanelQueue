@@ -1,0 +1,117 @@
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.Queue;
+
+public class InterviewPanelQueue {
+    public static void main(String[] args) {
+        try {
+            InterviewPanelQueue obj = new InterviewPanelQueue();
+            obj.start();
+        }
+        catch(Exception ex)
+        {
+            ex.printStackTrace();
+        }
+    }
+
+    public void start() throws InterruptedException {
+        try {
+            Queue<ApplicantInformation> interviewQueue = new LinkedList<ApplicantInformation>();
+
+            interviewQueue.add(new ApplicantInformation(6, "Meri", "M", "BE"));
+            interviewQueue.add(new ApplicantInformation(1, "Rita", "meri", "BCA"));
+            interviewQueue.add(new ApplicantInformation(2, "Seema", "Soni", "BSC"));
+            interviewQueue.add(new ApplicantInformation(5, "Sowmi", "TR", "ME"));
+            interviewQueue.add(new ApplicantInformation(3, "Fita", "Mehrin", "BTECH"));
+            interviewQueue.add(new ApplicantInformation(4, "Pria", "Mona", "MCA"));
+
+            displayInterviewMembers(interviewQueue);
+            System.out.println("Interview started!!!!");
+            interviewCallingProcedure(interviewQueue);
+        }
+        catch (Exception ex)
+        {
+            ex.printStackTrace();
+        }
+
+    }
+
+    public void displayInterviewMembers(Queue<ApplicantInformation> interviewQueue)
+    {
+        System.out.println("Interview members waiting in queue.......................\n");
+        System.out.printf("%-20s%-20s%-20s%-20s\n","Application Number","Last Name","First Name","Qualification");
+
+        Iterator iterator = interviewQueue.iterator();
+        while(iterator.hasNext())
+        {
+            ApplicantInformation item = (ApplicantInformation) iterator.next();
+            System.out.printf("%-20s%-20s%-20s%-20s\n",item.getApplicationNumber(),item.getApplicantLastName(),item.getApplicantFirstName(),item.getQualification());
+
+        }
+    }
+    public void interviewCallingProcedure(Queue<ApplicantInformation> interviewQueue) {
+        try {
+            if (interviewQueue.size() == 0) {
+                System.out.println("Interview finished!!! Thank You!!!");
+                return;
+            }
+            System.out.println("Calling person");
+            ApplicantInformation interviewPerson = interviewQueue.poll();
+            System.out.printf("%-20s%-20s%-20s%-20s\n", "Application Number", "Last Name", "First Name", "Qualification");
+            System.out.printf("%-20s%-20s%-20s%-20s\n", interviewPerson.getApplicationNumber(), interviewPerson.getApplicantLastName(), interviewPerson.getApplicantFirstName(), interviewPerson.getQualification());
+            Thread.sleep(3000);
+
+            interviewCallingProcedure(interviewQueue);
+        }
+        catch(Exception ex)
+        {
+            ex.printStackTrace();
+        }
+    }
+}
+class ApplicantInformation {
+
+    private int ApplicationNumber;
+    private String ApplicantLastName;
+    private String ApplicantFirstName;
+    private String Qualification;
+
+ApplicantInformation(int applicationNumber, String applicantLastName, String applicantFirstName, String qualification) {
+        this.ApplicationNumber = applicationNumber;
+        this.ApplicantLastName = applicantLastName;
+        this.ApplicantFirstName = applicantFirstName;
+        this.Qualification = qualification;
+    }
+
+    public int getApplicationNumber() {
+        return ApplicationNumber;
+    }
+
+    public void setApplicationNumber(int applicationNumber) {
+        ApplicationNumber = applicationNumber;
+    }
+
+    public String getApplicantLastName() {
+        return ApplicantLastName;
+    }
+
+    public void setApplicantLastName(String applicantLastName) {
+        ApplicantLastName = applicantLastName;
+    }
+
+    public String getApplicantFirstName() {
+        return ApplicantFirstName;
+    }
+
+    public void setApplicantFirstName(String applicantFirstName) {
+        ApplicantFirstName = applicantFirstName;
+    }
+
+    public String getQualification() {
+        return Qualification;
+    }
+
+    public void setQualification(String qualification) {
+        Qualification = qualification;
+    }
+}
