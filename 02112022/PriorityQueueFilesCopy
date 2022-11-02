@@ -43,3 +43,32 @@ class sizeComparator implements Comparator<FileInformation>
         return 0;
     }
 }
+
+import java.io.File;
+
+class FileInformation {
+    private File fileName;
+    private double fileSize;
+
+    FileInformation(File fileName,double fileSize)
+    {
+        this.fileName = fileName;
+        this.fileSize = fileSize;
+    }
+
+    public File getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(File fileName) {
+        this.fileName = fileName;
+    }
+
+    public double getFileSize() {
+        return fileSize;
+    }
+
+    public void setFileSize(double fileSize) {
+        this.fileSize = fileSize;
+    }
+}
