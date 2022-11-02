@@ -1,0 +1,93 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.Stack;
+
+public class ChatBotApplication {
+    public static void main(String[] args) {
+        ChatBotApplication obj = new ChatBotApplication();
+        obj.start();
+    }
+
+    public void start() {
+        ArrayList<MenuInformation> menuList = new ArrayList<>();
+        menuList.add(new MenuInformation("Welcome", "Hi! Welcome to RechargeInformationCenter! \n 1 --- proceed \n 0 --- Back"));
+        menuList.add(new MenuInformation("Available Recharge Plans", "Rs.181 --- 30 Days Talktime \n" +
+                "Rs.252 --- 60 Days TalkTime \n" +
+                "Rs.500 --- 120 Days Talktime \n " +
+                "Rs.120 --- 1GB Data \n " +
+                "Rs.240 --- 2GB Data \n " +
+                "Rs.360 --- 3GB Data \n " +
+                "\n 1 --- proceed to Combo Offer plans \n 0 --- Back"));
+        menuList.add(new MenuInformation("Combo Offer Plans", "Rs.250 --- 30 Days Talktime + 1GB Data \n" +
+                "Rs.350 --- 300 Days Talktime + 2GB Data \n" +
+                "Rs.500 --- 120 Days Talktime + 2GB Data \n" +
+                "\n 1 --- proceed to special day Offer plans \n 0 --- Back"));
+        menuList.add(new MenuInformation("Special Day Offer Plans", "Rs.1000 --- 120 Days Talktime + 10GB Data \n" +
+                "Rs.2000 --- 240 Days Talktime + 20GB Data \n" +
+                "Rs.5000 --- 360 Days Talktime + 50GB Data \n" +
+                "0 --- Back"));
+        displayAllPages(menuList);
+    }
+
+    public void displayAllPages(ArrayList<MenuInformation> menuList) {
+        Stack<MenuInformation> openedMenuList = new Stack<MenuInformation>();
+        MenuInformation temp = null;
+        int userSelection;
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Starting............................!");
+        int i=0;
+        System.out.println(menuList.get(i).getMenuTitle());
+        System.out.println("\n" + menuList.get(i).getMenuContent());
+
+        do {
+            userSelection = sc.nextInt();
+            switch (userSelection) {
+                case 1: ++i;
+                    if(i < menuList.size())
+                            openedMenuList.push(menuList.get(i-1));
+                        temp = menuList.get(i);
+                    break;
+                case 0: --i;
+                    if(!openedMenuList.isEmpty()) {
+//                    openedMenuList.pop();
+                    temp = openedMenuList.pop();
+                }
+                    break;
+                default:
+                    System.out.println("Please enter valid value (0 or 1):");
+            }
+            if(temp != null) {
+                System.out.println(temp.getMenuTitle());
+                System.out.println(temp.getMenuContent());
+            }
+        } while (userSelection ==1 || userSelection == 0);
+    }
+}
+
+class MenuInformation {
+    private String MenuTitle;
+    private String MenuContent;
+
+    MenuInformation(String MenuTitle,String MenuContent)
+    {
+        this.MenuTitle = MenuTitle;
+        this.MenuContent = MenuContent;
+    }
+
+    public String getMenuTitle() {
+        return MenuTitle;
+    }
+
+    public void setMenuTitle(String menuTitle) {
+        MenuTitle = menuTitle;
+    }
+
+    public String getMenuContent() {
+        return MenuContent;
+    }
+
+    public void setMenuContent(String menuContent) {
+        MenuContent = menuContent;
+    }
+}
+
