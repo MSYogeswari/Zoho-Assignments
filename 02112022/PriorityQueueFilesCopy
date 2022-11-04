@@ -1,20 +1,25 @@
 import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
-public class PriorityQueueFilesCopy {
-    public static void main(String[] args) {
+public class PriorityQueueFilesCopy {   
+    public static void main(String[] args) throws IOException {
         PriorityQueueFilesCopy obj = new PriorityQueueFilesCopy();
         obj.start();
     }
 
-    public void start()
-    {
+    public void start() throws IOException {
         PriorityQueue<FileInformation> filesQueue = new PriorityQueue(new sizeComparator());
-        File fileobject = new File("F:\\Yogeswari important\\Sample");
-        File[] fileList = fileobject.listFiles();
+        String sourcePath = "F:\\Yogeswari important\\Sample";
+        String destinationPath = "F:\\Yogeswari important\\SampleCopy";
+        File fileobjectsrc = new File(sourcePath);
+
+        File[] fileList = fileobjectsrc.listFiles();
 
         for(int i=0;i<fileList.length;i++)
         {
@@ -22,15 +27,29 @@ public class PriorityQueueFilesCopy {
         }
 
         Iterator iterator = filesQueue.iterator();
+
         System.out.printf("%-20s%-20s\n","File Name","File Size");
         while(iterator.hasNext())
         {
             FileInformation fileInformation = (FileInformation) iterator.next();
             System.out.printf("%-20s%-20s\n",fileInformation.getFileName().getName(),fileInformation.getFileSize());
         }
-        //File fileobject2 = new File("F:\\Yogeswari important\\SampleCopy");
-    }
 
+        while(!filesQueue.isEmpty())
+        {
+            FileInformation tempfileTobeCopied = filesQueue.remove();
+            System.out.println(tempfileTobeCopied.getFileName());
+            FileReader fileReader = new FileReader(tempfileTobeCopied.getFileName());
+            FileWriter fileWriter = new FileWriter(destinationPath+"\\"+ tempfileTobeCopied.getFileName().getName());
+            int i;
+            while((i = fileReader.read())!= -1)
+            {
+                fileWriter.write((char)i);
+            }
+            fileReader.close();
+            fileWriter.close();
+        }
+    }
 }
 class sizeComparator implements Comparator<FileInformation>
 {
