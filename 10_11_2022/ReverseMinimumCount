@@ -1,0 +1,32 @@
+import java.util.Scanner;
+
+public class ReverseMinimumCount {
+        public static void main (String[] args)
+        {
+            Scanner sc = new Scanner(System.in);
+            int T = sc.nextInt();
+            for(int i=0;i<T;i++)
+            {
+                String str = sc.next();
+                StringBuilder sb = new StringBuilder(str);
+                if(str.equals(sb.reverse().toString()))
+                {
+                    System.out.println(0);
+                    return;
+                }
+                int front = 0;
+                int end = str.length()-1;
+                int count = -1;
+                while(front < end)
+                {
+                    if(str.charAt(front) == str.charAt(end))
+                        count++;
+                    else
+                        break;
+                    front++;
+                    end--;
+                }
+                System.out.println(count == -1 ? str.length()-1 : count + 2 );
+            }
+        }
+    }
