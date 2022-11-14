@@ -1,0 +1,24 @@
+Flight number : 2345
+Flight name : "Kolkatta Airways"
+Flight departure time : 1.00
+Flight Arrival time : 11.00
+Total seats : 10
+Flight routes : Chennai,Bengalure,Hydrabad,Kolkatta
+Fare : 430
+*
+Flight number : 2346
+Flight name : "Delhi Airways"
+Flight departure time : 23 .00
+Flight Arrival time : 5.00
+Total seats : 10
+Flight routes : Chennai,Bengalure,Hydrabad,Kolkatta,Delhi
+Fare : 530
+*
+Flight number : 2347
+Flight name : "Kovai Express"
+Flight departure time : 23 .00
+Flight Arrival time : 5.00
+Total seats : 10
+Flight routes : Chennai,Bengalure,Hydrabad,Mumbai,Ahamadabath
+Fare : 530
+*
