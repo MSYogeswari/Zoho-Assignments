@@ -1,0 +1,15 @@
+public class StringEncode {
+    public static void main(String[] args) {
+        String str1 = "mom";
+        String str2 = "dad";
+
+
+int len = str1.length();
+        for(int i = 0 ;i < len; i++ )
+        {
+            int string2asci = str2.charAt(i)-96 + str1.charAt(i);
+            string2asci = string2asci > 122 ? string2asci - 26 : string2asci;
+            System.out.print((char) string2asci);
+        }
+    }
+}
