@@ -1,0 +1,14 @@
+public class PrintOverload {
+    public static void main(String[] args) {
+        print();
+        print("hello");
+        print("we","are","from","ZSgs");
+    }
+    public static void print(String ...stringArray)
+    {
+        for (String s : stringArray) {
+            System.out.print(s +" ");
+        }
+        System.out.println();
+    }
+}
