@@ -1,0 +1,29 @@
+import java.util.Scanner;
+
+public class ArrayBetweenXandY {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter array size: ");
+        int size = sc.nextInt();
+
+        int[] input = new int[size];
+        System.out.println("Enter array elements: ");
+        for(int index = 0 ; index < size;index++)
+        {
+            input[index] = sc.nextInt();
+        }
+        System.out.println("Enter Minimum value to check (X): ");
+        int x = sc.nextInt();
+        System.out.println("Enter Maximum value to check (Y): ");
+        int y = sc.nextInt();
+
+        for(int index = 0; index < size ; index++)
+        {
+            if(input[index] > x && input[index] <y)
+            {
+                System.out.println(input[index]);
+            }
+        }
+
+    }
+}
