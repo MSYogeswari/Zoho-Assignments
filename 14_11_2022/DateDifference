@@ -1,0 +1,53 @@
+public class DateDifference {
+    public static void main(String[] args) {
+        DateDifference obj = new DateDifference();
+        obj.start();
+
+    }
+public void start()
+{
+    Date d1 = new Date(1,2,2000);
+    Date d2 = new Date(1,2,2004);
+    System.out.println(getDifference(d1,d2));
+}
+
+    public int getDifference(Date d1, Date d2) {
+    int numberOfDays1 = d1.year * 365 + d1.day;
+    int numberOfDays2 = d2.year * 365 + d2.day;
+
+for(int i = 0;i < d1.month-1;i++)
+{
+    numberOfDays1 = numberOfDays1 + d1.daysOfMonth[i];
+}
+for(int j=0;j<d2.month-1;j++)
+{
+    numberOfDays2 = numberOfDays2 + d2.daysOfMonth[j];
+}
+numberOfDays1 = numberOfDays1 + countLeapYears(d1);
+numberOfDays2 = numberOfDays2 + countLeapYears(d2);
+
+
+return numberOfDays2 - numberOfDays1;
+    }
+public static int countLeapYears(Date dt)
+{
+    int years = dt.year;
+    if(dt.month <= 2)
+    {
+        years--;
+    }
+    return years/4 + years/400 - years/100;
+
+
+}
+    public static class Date {
+        int day, month, year;
+        int[] daysOfMonth = {31,28,31,30,31,30,31,31,30,31,30,31};
+        Date(int day, int month, int year) {
+            this.day = day;
+            this.month = month;
+            this.year = year;
+        }
+
+    }
+}
