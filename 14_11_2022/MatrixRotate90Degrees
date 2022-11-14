@@ -1,0 +1,39 @@
+import java.util.Scanner;
+
+public class MatrixRotate90 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter rows and column number: ");
+        int row = sc.nextInt();
+        int col = sc.nextInt();
+        int[][] inputArray = new int[row][col];
+        int[][] outputArray = new int[col][row];
+        System.out.println("Enter the matrix: ");
+        for(int i=0;i<row;i++)
+        {
+            for(int j=0;j<col;j++)
+            {
+                inputArray[i][j] = sc.nextInt();
+            }
+        }
+        for(int i=0;i<row;i++)
+        {
+            for(int j=0;j<col;j++)
+            {
+                outputArray[col-j-1][i] = inputArray[i][j];
+            }
+        }
+
+
+
+
+        for(int i=0;i<row;i++)
+        {
+            for(int j=0;j<col;j++)
+            {
+                System.out.print(outputArray[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+}
