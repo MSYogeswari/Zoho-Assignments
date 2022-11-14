@@ -1,0 +1,35 @@
+import java.util.Scanner;
+
+public class TrainSeatBerth {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Enter seat number to kow berth: ");
+        int seatNumber = sc.nextInt();
+        if(seatNumber < 0 || seatNumber >72)
+        {
+            System.out.println("Please enter valid seat number.");
+            return;
+        }
+
+        String berthType = "";
+
+        int seatRemainder = seatNumber % 8;
+        switch(seatRemainder)
+        {
+            case 1:
+            case 4: berthType = "Lower Berth";
+                break;
+            case 2:
+            case 5: berthType = "Middle Berth";
+                break;
+            case 3:
+            case 6: berthType = "Upper Berth";
+                break;
+            case 7: berthType = "Side Lower";
+                    break;
+            case 0: berthType = "Side Upper";
+        }
+System.out.println(berthType);
+    }
+}
